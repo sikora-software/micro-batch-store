@@ -27,6 +27,7 @@ export default tseslint.config(
     },
     rules: {
       'prettier/prettier': 'error',
+      '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     },
