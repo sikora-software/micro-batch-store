@@ -8,8 +8,13 @@
     "store",
     "state-management",
     "microtask",
+    "queueMicrotask",
     "batching",
-    "lightweight"
+    "batched-updates",
+    "lightweight",
+    "tiny-redux",
+    "performance",
+    "typescript"
   ],
   "homepage": "https://github.com/sikora-software/micro-batch-store#readme",
   "bugs": {
