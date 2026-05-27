@@ -5,7 +5,7 @@ import eslintPluginPrettier from 'eslint-plugin-prettier';
 
 export default tseslint.config(
   {
-    ignores: ['dist', 'eslint.config.mjs'],
+    ignores: ['dist', 'eslint.config.mjs', 'vitest.config.ts'],
   },
 
   eslint.configs.recommended,
