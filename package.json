@@ -1,0 +1,46 @@
+{
+  "name": "micro-batch-store",
+  "version": "0.0.1",
+  "author": "Mateusz Sikora (sikora.software)",
+  "description": "Minimal Redux-like store with microtask-batched notifications",
+  "keywords": [
+    "redux",
+    "store",
+    "state-management",
+    "microtask",
+    "batching",
+    "lightweight"
+  ],
+  "homepage": "https://github.com/sikora-software/micro-batch-store#readme",
+  "bugs": {
+    "url": "https://github.com/sikora-software/micro-batch-store/issues"
+  },
+  "license": "MIT",
+  "packageManager": "pnpm@11.3.0",
+  "engines": {
+    "node": ">=24",
+    "pnpm": "11.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sikora-software/micro-batch-store.git"
+  },
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {},
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ]
+}
