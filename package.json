@@ -26,7 +26,7 @@
     "url": "git+https://github.com/sikora-software/micro-batch-store.git"
   },
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --clean --define.PACKAGE_VERSION \"\\\"$npm_package_version\\\"\" && tsc --emitDeclarationOnly",
+    "build": "tsup src/index.ts --format cjs,esm --clean --define.PACKAGE_VERSION \"\\\"$npm_package_version\\\"\" && tsc -p tsconfig.build.json --emitDeclarationOnly",
     "dev": "tsup src/index.ts --format cjs,esm --watch --define.PACKAGE_VERSION \"\\\"$npm_package_version\\\"\"",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
