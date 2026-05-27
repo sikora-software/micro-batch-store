@@ -1,2 +1,4 @@
 export * from './types';
-export const version = '0.0.1';
+export * from './create-store';
+
+export const version = PACKAGE_VERSION;
