@@ -1,27 +1,22 @@
 # micro-batch-store
 
-**Minimal Redux-like store with microtask-batched notifications.**
+[![npm version](https://img.shields.io/npm/v/micro-batch-store.svg?style=flat-square)](https://www.npmjs.com/package/micro-batch-store)
+[![license](https://img.shields.io/npm/l/micro-batch-store.svg?style=flat-square)](https://github.com/sikora-software/micro-batch-store/blob/main/LICENSE)
 
-Multiple synchronous dispatches are coalesced — subscribers fire exactly once per microtask with the final state.
+**Minimal Redux-like state store with microtask-batched subscriber notifications.**
 
-## The Idea
+`micro-batch-store` separates state updates from subscriber notifications. State changes synchronously when `dispatch()` is called, but subscriber notifications are queued via `queueMicrotask()`. Multiple synchronous dispatches produce a single subscriber execution containing the final state.
 
-Modern applications often suffer from "notification spam" where multiple state updates in quick succession trigger redundant UI re-renders. `micro-batch-store` solves this by leveraging `queueMicrotask` to batch notifications.
+---
 
-Instead of notifying subscribers immediately on every `dispatch`, the store schedules a single notification to run at the end of the current execution cycle (the microtask queue). This ensures your UI only updates once with the final computed state, no matter how many actions were dispatched synchronously.
+## Why use it?
 
-## Why use this?
+- **Zero dependencies** — Small footprint for lightweight apps or embedded utilities.
+- **Automatic batching** — Eliminates re-render cascades from rapid synchronous updates.
+- **Synchronous state reads** — `store.getState()` always reflects the latest state immediately.
+- **TypeScript native** — Typed state, actions, reducers, and middleware out of the box.
 
-- **Zero Overhead State Management**: Perfect for lightweight websites that need a structured state container without the bundle size of Redux or other heavy libraries.
-- **Performance by Default**: Automatically prevents "re-render storms" by batching updates out of the box.
-- **Microscopic Footprint**: Designed to keep your bundle lean while providing the familiar Redux pattern.
-
-## Features
-
-- **Coalesced Notifications**: Multiple `dispatch` calls in the same microtask trigger only one notification to subscribers.
-- **Middleware Support**: Synchronous middleware execution for side effects (like logging or URL syncing).
-- **TypeScript First**: Full type safety for state, actions, and middleware.
-- **Minimalist**: Tiny footprint with zero dependencies.
+---
 
 ## Installation
 
@@ -29,35 +24,66 @@ Instead of notifying subscribers immediately on every `dispatch`, the store sche
 npm install micro-batch-store
 ```
 
-## Usage
+---
 
-```typescript
-import { createStore, Reducer } from 'micro-batch-store';
+## Basic Usage
+
+```ts
+import { createStore, type Reducer } from 'micro-batch-store';
 
 type State = number;
 type Action = { type: 'INCREMENT' } | { type: 'DECREMENT' };
 
 const reducer: Reducer<State, Action> = (state = 0, action) => {
   switch (action.type) {
-    case 'INCREMENT': return state + 1;
-    case 'DECREMENT': return state - 1;
-    default: return state;
+    case 'INCREMENT':
+      return state + 1;
+    case 'DECREMENT':
+      return state - 1;
+    default:
+      return state;
   }
 };
 
 const store = createStore(reducer, 0);
 
-store.subscribe((state, prevState) => {
-  console.log(`State changed from ${prevState} to ${state}`);
+store.subscribe((state, previousState) => {
+  console.log(`State changed from ${previousState} to ${state}`);
 });
 
-// Multiple dispatches in the same microtask
+// Dispatch multiple actions synchronously
 store.dispatch({ type: 'INCREMENT' });
 store.dispatch({ type: 'INCREMENT' });
 store.dispatch({ type: 'INCREMENT' });
 
-// Console will log only once: "State changed from 0 to 3"
+// Subscribers fire ONCE at the end of the microtask:
+// -> "State changed from 0 to 3"
 ```
+
+### Immediate State Reading
+
+State updates synchronously on `dispatch()`, even though subscriber notifications are deferred:
+
+```ts
+store.dispatch({ type: 'INCREMENT' });
+
+// Always returns the latest state immediately (1)
+console.log(store.getState());
+```
+
+### Middleware
+
+```ts
+store.addMiddleware((action, nextState, previousState) => {
+  console.log(`Action: ${action.type}`, previousState, '->', nextState);
+});
+```
+
+---
+
+## Author
+
+Created and maintained by [Mateusz Sikora](https://sikora.software).
 
 ## License
 
