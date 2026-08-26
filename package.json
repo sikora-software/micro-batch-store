@@ -37,7 +37,10 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "format:check": "prettier --check \"src/**/*.ts\"",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "changeset": "changeset",
+    "check": "pnpm format:check && pnpm lint && pnpm test && pnpm build",
+    "prepublishOnly": "pnpm check"
   },
   "devDependencies": {
     "@changesets/cli": "^3.0.1",
@@ -64,6 +67,7 @@
   "files": [
     "dist",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "CHANGELOG.md"
   ]
 }

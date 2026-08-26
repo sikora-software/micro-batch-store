@@ -1,11 +1,17 @@
-name: 'Setup Environment'
-description: 'Shared action to setup Node.js and pnpm'
+name: Setup Environment
+
+description: Shared action to set up Node.js, pnpm, and dependencies
 
 runs:
-  using: 'composite'
+  using: composite
+
   steps:
     - name: Set up pnpm and Node.js
       uses: pnpm/setup@v1
       with:
         runtime: node@24
         cache: true
+
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
+      shell: bash
