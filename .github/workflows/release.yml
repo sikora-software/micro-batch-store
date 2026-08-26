@@ -2,23 +2,33 @@ name: Release
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+    paths:
+      - '.changeset/*.md'
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
-  build-and-verify:
+  release:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v5
 
       - name: Setup Env
         uses: ./.github/actions/setup-env
 
-      - name: Test & Build
-        run: |
-          pnpm run test
-          pnpm run build
-
-      # - name: Publish to npm
-      #   run: pnpm publish
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Create Release PR
+        uses: changesets/action@v1
+        with:
+          version: pnpm exec changeset version
+          title: 'chore: release package'
+          commit: 'chore: release package'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
