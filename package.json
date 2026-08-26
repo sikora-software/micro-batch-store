@@ -1,6 +1,6 @@
 {
   "name": "micro-batch-store",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "author": "Mateusz Sikora (https://sikora.software)",
   "description": "Minimal Redux-like store with microtask-batched notifications",
   "keywords": [
