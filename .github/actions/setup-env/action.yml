@@ -11,7 +11,3 @@ runs:
       with:
         runtime: node@24
         cache: true
-
-    - name: Install dependencies
-      run: pnpm install --frozen-lockfile
-      shell: bash
