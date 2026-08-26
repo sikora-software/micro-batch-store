@@ -20,12 +20,26 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
+
+      - name: Verify changeset files exist
+        id: check_changesets
+        run: |
+          # Find any .md files in .changeset excluding README.md
+          FILES=$(ls .changeset/*.md 2>/dev/null | grep -v 'README.md' || true)
+          if [ -n "$FILES" ]; then
+            echo "has_changesets=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_changesets=false" >> $GITHUB_OUTPUT
+            echo "No changeset files found. Skipping release PR creation."
+          fi
 
       - name: Setup Env
+        if: steps.check_changesets.outputs.has_changesets == 'true' || github.event_name == 'workflow_dispatch'
         uses: ./.github/actions/setup-env
 
       - name: Create Release PR
+        if: steps.check_changesets.outputs.has_changesets == 'true' || github.event_name == 'workflow_dispatch'
         uses: changesets/action@v1
         with:
           version: pnpm exec changeset version
