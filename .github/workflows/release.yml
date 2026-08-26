@@ -5,7 +5,8 @@ on:
     branches:
       - main
     paths:
-      - '.changeset/*.md'
+      - '.changeset/**.md'
+      - '!.changeset/README.md'
 
   workflow_dispatch:
 
