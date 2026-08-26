@@ -21,10 +21,10 @@
     "url": "https://github.com/sikora-software/micro-batch-store/issues"
   },
   "license": "MIT",
-  "packageManager": "pnpm@11.13.0",
+  "packageManager": "pnpm@11.17.0",
   "engines": {
     "node": ">=24",
-    "pnpm": "11.13.0"
+    "pnpm": ">=11.13.0"
   },
   "repository": {
     "type": "git",
