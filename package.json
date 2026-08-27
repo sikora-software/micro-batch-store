@@ -1,8 +1,9 @@
 {
   "name": "micro-batch-store",
   "version": "0.1.0",
+  "description": "Minimal Redux-like state store with microtask-batched subscriber notifications.",
   "author": "Mateusz Sikora (https://sikora.software)",
-  "description": "Minimal Redux-like store with microtask-batched notifications",
+  "license": "MIT",
   "keywords": [
     "redux",
     "store",
@@ -20,7 +21,6 @@
   "bugs": {
     "url": "https://github.com/sikora-software/micro-batch-store/issues"
   },
-  "license": "MIT",
   "packageManager": "pnpm@11.24.0",
   "engines": {
     "node": ">=22.23.2"
