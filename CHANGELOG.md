@@ -1,5 +1,11 @@
 # micro-batch-store
 
+## 0.1.2
+
+### Patch Changes
+
+- 0ca684c: Update dependencies
+
 ## 0.1.1
 
 ### Patch Changes
