@@ -1,5 +1,11 @@
 # micro-batch-store
 
+## 0.2.0
+
+### Minor Changes
+
+- 595a2e2: Added effects and selectors
+
 ## 0.1.2
 
 ### Patch Changes

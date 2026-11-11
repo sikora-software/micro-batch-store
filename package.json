@@ -1,6 +1,6 @@
 {
   "name": "micro-batch-store",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Synchronous state updates with microtask-batched notifications, selectors, and effects.",
   "author": "Mateusz Sikora (https://sikora.software)",
   "license": "MIT",
