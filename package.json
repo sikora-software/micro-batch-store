@@ -1,7 +1,7 @@
 {
   "name": "micro-batch-store",
   "version": "0.1.2",
-  "description": "Minimal Redux-like state store with microtask-batched subscriber notifications.",
+  "description": "Synchronous state updates with microtask-batched notifications, selectors, and effects.",
   "author": "Mateusz Sikora (https://sikora.software)",
   "license": "MIT",
   "keywords": [
